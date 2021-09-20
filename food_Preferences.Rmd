@@ -41,7 +41,7 @@ data$Gender[is.na(data$Gender)] <- "Not disclosed"
 unique(data$Gender)
 ```
 
-Another detail to take into account seems to be Nationality. There are multiple instances of the same nationality just in different forms. As well as a mystery nationality called "**MY**" that doesn't seem to be an abbreviation of any known nation.
+Another detail to take into account seems to be Nationality. There are multiple instances of the same nationality just in different forms. As well as a mystery nationality called "**MY**" that doesn't seem to be an abbreviation of any known nation (For the purposes of this project it will count as Malaysian).
 
 ```{r echo=FALSE}
 unique(data$Nationality)
@@ -53,6 +53,7 @@ The easiest solution I found was to find all the repeating nationalities and rep
 data$Nationality[data$Nationality == 'Indonesia'] <- 'Indonesian'
 data$Nationality[data$Nationality == 'Pakistan'] <- 'Pakistani'
 data$Nationality[data$Nationality == 'Malaysia' | data$Nationality == 'MALAYSIAN'] <- 'Malaysian'
+data$Nationality[data$Nationality == 'MY'] <- 'Malaysian'
 ```
 
 ```{r echo=FALSE}
