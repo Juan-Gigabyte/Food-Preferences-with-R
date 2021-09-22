@@ -221,229 +221,148 @@ pre code {
 <h1>Importing libraries</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGBcbmBgYCJ9 -->
-<pre class="r"><code>```r
-library(tidyverse)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4xIOKUgOKUgFxu4pyTIGdncGxvdDIgMy4zLjMgICAgIOKckyBwdXJyciAgIDAuMy40XG7inJMgdGliYmxlICAzLjEuMSAgICAg4pyTIGRwbHlyICAgMS4wLjZcbuKckyB0aWR5ciAgIDEuMS4zICAgICDinJMgc3RyaW5nciAxLjQuMFxu4pyTIHJlYWRyICAgMS40LjAgICAgIOKckyBmb3JjYXRzIDAuNS4xXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= -->
+<pre><code>Registered S3 methods overwritten by &#39;dbplyr&#39;:
+  method         from
+  print.tbl_lazy     
+  print.tbl_sql      
+── Attaching packages ─────────────────────────────────────────── tidyverse 1.3.1 ──
+✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+✓ tibble  3.1.1     ✓ dplyr   1.0.6
+✓ tidyr   1.1.3     ✓ stringr 1.4.0
+✓ readr   1.4.0     ✓ forcats 0.5.1
+── Conflicts ────────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="getting-our-data" class="section level1">
+<h1>Getting our data</h1>
+<p>For this data viz project I will be taking a look at a Kaggle data set call <a href="https://www.kaggle.com/vijayashreer/food-preferences">Food Preferences</a>. The data was collected via survey that was conducted among participants from different countries and demographics.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSByZWFkX2NzdignRm9vZF9QcmVmZXJlbmNlLmNzdicpXG5gYGAifQ== -->
+<pre class="r"><code>data &lt;- read_csv(&#39;Food_Preference.csv&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5jb2xzKFxuICBUaW1lc3RhbXAgPSBjb2xfY2hhcmFjdGVyKCksXG4gIFBhcnRpY2lwYW50X0lEID0gY29sX2NoYXJhY3RlcigpLFxuICBHZW5kZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIE5hdGlvbmFsaXR5ID0gY29sX2NoYXJhY3RlcigpLFxuICBBZ2UgPSBjb2xfZG91YmxlKCksXG4gIEZvb2QgPSBjb2xfY2hhcmFjdGVyKCksXG4gIEp1aWNlID0gY29sX2NoYXJhY3RlcigpLFxuICBEZXNzZXJ0ID0gY29sX2NoYXJhY3RlcigpXG4pXG4ifQ== -->
 <pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2RzIG92ZXJ3cml0dGVuIGJ5ICdkYnBseXInOlxuICBtZXRob2QgICAgICAgICBmcm9tXG4gIHByaW50LnRibF9sYXp5ICAgICBcbiAgcHJpbnQudGJsX3NxbCAgICAgIFxu4pSA4pSAIEF0dGFjaGluZyBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDEuMy4xIOKUgOKUgFxu4pyTIGdncGxvdDIgMy4zLjMgICAgIOKckyBwdXJyciAgIDAuMy40XG7inJMgdGliYmxlICAzLjEuMSAgICAg4pyTIGRwbHlyICAgMS4wLjZcbuKckyB0aWR5ciAgIDEuMS4zICAgICDinJMgc3RyaW5nciAxLjQuMFxu4pyTIHJlYWRyICAgMS40LjAgICAgIOKckyBmb3JjYXRzIDAuNS4xXG7ilIDilIAgQ29uZmxpY3RzIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgCB0aWR5dmVyc2VfY29uZmxpY3RzKCkg4pSA4pSAXG54IGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbnggZHBseXI6OmxhZygpICAgIG1hc2tzIHN0YXRzOjpsYWcoKVxuIn0= --&gt;
-</code></pre>
-<p>Registered S3 methods overwritten by ‘dbplyr’: method from print.tbl_lazy<br />
-print.tbl_sql<br />
-── Attaching packages ──────────────────────────────────────────────────────────────── tidyverse 1.3.1 ── ✓ ggplot2 3.3.3 ✓ purrr 0.3.4 ✓ tibble 3.1.1 ✓ dplyr 1.0.6 ✓ tidyr 1.1.3 ✓ stringr 1.4.0 ✓ readr 1.4.0 ✓ forcats 0.5.1 ── Conflicts ─────────────────────────────────────────────────────────────────── tidyverse_conflicts() ── x dplyr::filter() masks stats::filter() x dplyr::lag() masks stats::lag()</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# Getting our data
-
-For this data viz project I will be taking a look at a Kaggle data set call [Food Preferences](https://www.kaggle.com/vijayashreer/food-preferences). The data was collected via survey that was conducted among participants from different countries and demographics.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YSA8LSByZWFkX2NzdignRm9vZF9QcmVmZXJlbmNlLmNzdicpXG5gYGBcbmBgYCJ9 --&gt;
-
-```r
-```r
-data &lt;- read_csv(&#39;Food_Preference.csv&#39;)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiXG7ilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5jb2xzKFxuICBUaW1lc3RhbXAgPSBjb2xfY2hhcmFjdGVyKCksXG4gIFBhcnRpY2lwYW50X0lEID0gY29sX2NoYXJhY3RlcigpLFxuICBHZW5kZXIgPSBjb2xfY2hhcmFjdGVyKCksXG4gIE5hdGlvbmFsaXR5ID0gY29sX2NoYXJhY3RlcigpLFxuICBBZ2UgPSBjb2xfZG91YmxlKCksXG4gIEZvb2QgPSBjb2xfY2hhcmFjdGVyKCksXG4gIEp1aWNlID0gY29sX2NoYXJhY3RlcigpLFxuICBEZXNzZXJ0ID0gY29sX2NoYXJhY3RlcigpXG4pXG4ifQ== --&gt;
-</code></pre>
-<p>── Column specification ───────────────────────────────────────────────────────────────────────────────── cols( Timestamp = col_character(), Participant_ID = col_character(), Gender = col_character(), Nationality = col_character(), Age = col_double(), Food = col_character(), Juice = col_character(), Dessert = col_character() )</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaGVhZChkYXRhKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-head(data)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6OCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6IjYgeCA4In19LCJyZGYiOiJINHNJQUFBQUFBQUFBNjFVejAvaVFCUWVnU0xnK21QamNTKzliOEFwQlpYdVFZMEU0eVpzaUxKWlBabWhIWEZpbVpMcEVQWG0zKzFCOXJYTUlOTXNZamEyR2Q3N3Z2bGUzNDhwdldoZnVaV3JDa0lvandwdzV5MXdrZlc3MzZrZUlsVElBVmdEdXB6WVJ4RHRnbE9DdFFPcnFEYSsxYkhUMnNQTlBYeGcxNzFteTNOY3U5ZTF6N3I5NzRmTEpJM21leExYdzlqRHF5V09zMElDdWZBS2lldTVqVGVKMlZteDA3dkUyREZRM1VDdWdSb0dhaHBvUC9Qc1FwZUVkSzZnb3pmMHNaMlpuNm4zbkFlTThFOUNDRzBsNkRpWkNsekgrOG9lS2R0UzlvZXlTcGVwYWFjdlNNQWtpemdKN2Rzb0NoVC81UStOSlJYYzdyelBMWXYvT0cvV3M5RVJOTDZ6ZjA2WXIwZjU5WlNJQWVnbERleEFNSDRmTDlmK0IyWG10N3JrYWFCMStXc2EvNHRmRHRJSTg0OXBjVEpLeURSTlNaSGxQZ05Ta3RGWUVWczlJaVR6Mlpod2VYUGUxbWQ5Um5sQWhTNzdGNWtOanNrbm5lOWtPSC9qRms3Rld1eDJ2VTNqbUFxWnFhc3Nvb2Vhcm0wVFZ1NFpmcWJUNlV1MkFUOGtzVzVBazVXQVNGSzdGUkFQNkRVVHNoNk5rMG9oS0pkOGtxeE04SnJJRU5zVG5sUVNWUDI3Q2IrdjFwTUU2ZmJzMmxSK2NjRXZ6VkxtcHVwUmxoNFo1VVBHNTRjVGtnRU45WXloNDdUaDJoaGVJNms3QVRhdXlVZ1NyYXY0VWFpWnREZjAraGRCbnBodmlRVUFBQT09In0= --&gt;
-
-&lt;div data-pagedtable=&quot;false&quot;&gt;
-  &lt;script data-pagedtable-source type=&quot;application/json&quot;&gt;
-{&quot;columns&quot;:[{&quot;label&quot;:[&quot;Timestamp&quot;],&quot;name&quot;:[1],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Participant_ID&quot;],&quot;name&quot;:[2],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Gender&quot;],&quot;name&quot;:[3],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Nationality&quot;],&quot;name&quot;:[4],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Age&quot;],&quot;name&quot;:[5],&quot;type&quot;:[&quot;dbl&quot;],&quot;align&quot;:[&quot;right&quot;]},{&quot;label&quot;:[&quot;Food&quot;],&quot;name&quot;:[6],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Juice&quot;],&quot;name&quot;:[7],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;Dessert&quot;],&quot;name&quot;:[8],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]}],&quot;data&quot;:[{&quot;1&quot;:&quot;2019/05/07 2:59:13 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS001&quot;,&quot;3&quot;:&quot;Male&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;24&quot;,&quot;6&quot;:&quot;Traditional food&quot;,&quot;7&quot;:&quot;Fresh Juice&quot;,&quot;8&quot;:&quot;Maybe&quot;},{&quot;1&quot;:&quot;2019/05/07 2:59:45 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS002&quot;,&quot;3&quot;:&quot;Female&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;22&quot;,&quot;6&quot;:&quot;Western Food&quot;,&quot;7&quot;:&quot;Carbonated drinks&quot;,&quot;8&quot;:&quot;Yes&quot;},{&quot;1&quot;:&quot;2019/05/07 3:00:05 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS003&quot;,&quot;3&quot;:&quot;Male&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;31&quot;,&quot;6&quot;:&quot;Western Food&quot;,&quot;7&quot;:&quot;Fresh Juice&quot;,&quot;8&quot;:&quot;Maybe&quot;},{&quot;1&quot;:&quot;2019/05/07 3:00:11 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS004&quot;,&quot;3&quot;:&quot;Female&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;25&quot;,&quot;6&quot;:&quot;Traditional food&quot;,&quot;7&quot;:&quot;Fresh Juice&quot;,&quot;8&quot;:&quot;Maybe&quot;},{&quot;1&quot;:&quot;2019/05/07 3:02:50 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS005&quot;,&quot;3&quot;:&quot;Male&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;27&quot;,&quot;6&quot;:&quot;Traditional food&quot;,&quot;7&quot;:&quot;Fresh Juice&quot;,&quot;8&quot;:&quot;Maybe&quot;},{&quot;1&quot;:&quot;2019/05/07 3:03:34 PM GMT+8&quot;,&quot;2&quot;:&quot;FPS006&quot;,&quot;3&quot;:&quot;Male&quot;,&quot;4&quot;:&quot;Indian&quot;,&quot;5&quot;:&quot;24&quot;,&quot;6&quot;:&quot;Traditional food&quot;,&quot;7&quot;:&quot;Fresh Juice&quot;,&quot;8&quot;:&quot;Yes&quot;}],&quot;options&quot;:{&quot;columns&quot;:{&quot;min&quot;:{},&quot;max&quot;:[10],&quot;total&quot;:[8]},&quot;rows&quot;:{&quot;min&quot;:[10],&quot;max&quot;:[10],&quot;total&quot;:[6]},&quot;pages&quot;:{}}}
-  &lt;/script&gt;
-&lt;/div&gt;
-
-&lt;!-- rnb-frame-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3VtbWFyeShkYXRhKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-summary(data)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiICBUaW1lc3RhbXAgICAgICAgICBQYXJ0aWNpcGFudF9JRCAgICAgICAgR2VuZGVyICAgICAgICAgIE5hdGlvbmFsaXR5ICAgICAgICAgICAgIEFnZSAgICAgICBcbiBMZW5ndGg6Mjg4ICAgICAgICAgTGVuZ3RoOjI4OCAgICAgICAgIExlbmd0aDoyODggICAgICAgICBMZW5ndGg6Mjg4ICAgICAgICAgTWluLiAgIDogOC4wMCAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIDFzdCBRdS46MjQuMDAgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgICBNZWRpYW4gOjI4LjAwICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDozMC42MCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46MzYuMjUgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNYXguICAgOjgwLjAwICBcbiAgICAgRm9vZCAgICAgICAgICAgICAgSnVpY2UgICAgICAgICAgICAgRGVzc2VydCAgICAgICAgIFxuIExlbmd0aDoyODggICAgICAgICBMZW5ndGg6Mjg4ICAgICAgICAgTGVuZ3RoOjI4OCAgICAgICAgXG4gQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICBcbiBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIn0= --&gt;
-</code></pre>
-<p>Timestamp Participant_ID Gender Nationality Age<br />
-Length:288 Length:288 Length:288 Length:288 Min. : 8.00<br />
-Class :character Class :character Class :character Class :character 1st Qu.:24.00<br />
-Mode :character Mode :character Mode :character Mode :character Median :28.00<br />
-Mean :30.60<br />
-3rd Qu.:36.25<br />
-Max. :80.00<br />
-Food Juice Dessert<br />
-Length:288 Length:288 Length:288<br />
-Class :character Class :character Class :character<br />
-Mode :character Mode :character Mode :character</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# Cleaning our data
-
-Looking at our data we seem only to have missing values in regards to gender.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcTWFsZVxcICAgXFxGZW1hbGVcXCBOQSAgICAgIFxuIn0= --&gt;
-</code></pre>
-<p>[1]    NA</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-This could be due to not in fact wanting to disclose their gender so we can change the &quot;NA&quot; to &quot;Not disclosed&quot; without any issues.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIFxcTWFsZVxcICAgICAgICAgIFxcRmVtYWxlXFwgICAgICAgIFxcTm90IGRpc2Nsb3NlZFxcXG4ifQ== --&gt;
-</code></pre>
-<p>[1]     disclosed<br />
-</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Another detail to take into account seems to be Nationality. There are multiple instances of the same nationality just in different forms. As well as a mystery nationality called &quot;**MY**&quot; that doesn&#39;t seem to be an abbreviation of any known nation (For the purposes of this project it will count as Malaysian).
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcXEluZGlhblxcICAgICAgXFxQYWtpc3RhbmlcXCAgIFxcVGFuemFuaWFuXFwgICBcXEluZG9uZXNpYVxcICAgXFxNdXNsaW1cXCAgICAgIFxcUGFraXN0YW5cXCAgICBcXE1hbGRpdmlhblxcICBcbiBbOF0gXFxNWVxcICAgICAgICAgIFxcTWFsYXlzaWFuXFwgICBcXEluZG9uZXNpYW5cXCAgXFxNQUxBWVNJQU5cXCAgIFxcTWFsYXlzaWFcXCAgICBcXENhbmFkaWFuXFwgICAgXFxOaWdlcmlhblxcICAgXG5bMTVdIFxcQWxnZXJpYW5cXCAgICBcXEtvcmVhblxcICAgICAgXFxTZXljaGVsbG9pc1xcIFxcSW5kb25lc2FpblxcICBcXEphcGFuXFwgICAgICAgXFxDaGluYVxcICAgICAgIFxcTWF1cml0aWFuXFwgIFxuWzIyXSBcXFllbWVuXFwgICAgICBcbiJ9 --&gt;
-</code></pre>
-<p>[1]               [8]              <br />
-[15]              [22]  </p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-The easiest solution I found was to find all the repeating nationalities and replace them with a single one.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcXEluZGlhblxcICAgICAgXFxQYWtpc3RhbmlcXCAgIFxcVGFuemFuaWFuXFwgICBcXEluZG9uZXNpYW5cXCAgXFxNdXNsaW1cXCAgICAgIFxcTWFsZGl2aWFuXFwgICBcXE1ZXFwgICAgICAgICBcbiBbOF0gXFxNYWxheXNpYW5cXCAgIFxcQ2FuYWRpYW5cXCAgICBcXE5pZ2VyaWFuXFwgICAgXFxBbGdlcmlhblxcICAgIFxcS29yZWFuXFwgICAgICBcXFNleWNoZWxsb2lzXFwgXFxJbmRvbmVzYWluXFwgXG5bMTVdIFxcSmFwYW5cXCAgICAgICBcXENoaW5hXFwgICAgICAgXFxNYXVyaXRpYW5cXCAgIFxcWWVtZW5cXCAgICAgIFxuIn0= --&gt;
-</code></pre>
-<p>[1]              <br />
-[8]              [15]        <br />
-```</p>
+── Column specification ────────────────────────────────────────────────────────────
+cols(
+  Timestamp = col_character(),
+  Participant_ID = col_character(),
+  Gender = col_character(),
+  Nationality = col_character(),
+  Age = col_double(),
+  Food = col_character(),
+  Juice = col_character(),
+  Dessert = col_character()
+)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChkYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>head(data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6OCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI2IHggOCJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUE2MVV6MC9pUUJRZWdTTGcrbVBqY1MrOWI4QXBCWlh1UVkwRTR5WnNpTEpaUFptaEhYRmltWkxwRVBYbTMrMUI5clhNSU5Nc1lqYTJHZDc3dnZsZTM0OHB2V2hmdVpXckNrSW9qd3B3NXkxd2tmVzczNmtlSWxUSUFWZ0R1cHpZUnhEdGdsT0N0UU9ycURhKzFiSFQyc1BOUFh4ZzE3MW15M05jdTllMXo3cjk3NGZMSkkzbWV4TFh3OWpEcXlXT3MwSUN1ZkFLaWV1NWpUZUoyVm14MDd2RTJERlEzVUN1Z1JvR2FocG9QL1BzUXBlRWRLNmdvemYwc1oyWm42bjNuQWVNOEU5Q0NHMGw2RGlaQ2x6SCs4b2VLZHRTOW9leVNwZXBhYWN2U01Ba2l6Z0o3ZHNvQ2hULzVRK05KUlhjN3J6UExZdi9PRy9XczlFUk5MNnpmMDZZcjBmNTlaU0lBZWdsRGV4QU1INGZMOWYrQjJYbXQ3cmthYUIxK1dzYS80dGZEdElJODQ5cGNUSkt5RFJOU1pIbFBnTlNrdEZZRVZzOUlpVHoyWmh3ZVhQZTFtZDlSbmxBaFM3N0Y1a05qc2tubmU5a09IL2pGazdGV3V4MnZVM2ptQXFacWFzc29vZWFybTBUVnU0WmZxYlQ2VXUyQVQ4a3NXNUFrNVdBU0ZLN0ZSQVA2RFVUc2g2Tmswb2hLSmQ4a3F4TThKcklFTnNUbmxRU1ZQMjdDYit2MXBNRTZmYnMybFIrY2NFdnpWTG1wdXBSbGg0WjVVUEc1NGNUa2dFTjlZeWg0N1RoMmhoZUk2azdBVGF1eVVnU3JhdjRVYWladERmMCtoZEJucGh2aVFVQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Timestamp"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Participant_ID"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Nationality"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Age"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Food"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Juice"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Dessert"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"2019/05/07 2:59:13 PM GMT+8","2":"FPS001","3":"Male","4":"Indian","5":"24","6":"Traditional food","7":"Fresh Juice","8":"Maybe"},{"1":"2019/05/07 2:59:45 PM GMT+8","2":"FPS002","3":"Female","4":"Indian","5":"22","6":"Western Food","7":"Carbonated drinks","8":"Yes"},{"1":"2019/05/07 3:00:05 PM GMT+8","2":"FPS003","3":"Male","4":"Indian","5":"31","6":"Western Food","7":"Fresh Juice","8":"Maybe"},{"1":"2019/05/07 3:00:11 PM GMT+8","2":"FPS004","3":"Female","4":"Indian","5":"25","6":"Traditional food","7":"Fresh Juice","8":"Maybe"},{"1":"2019/05/07 3:02:50 PM GMT+8","2":"FPS005","3":"Male","4":"Indian","5":"27","6":"Traditional food","7":"Fresh Juice","8":"Maybe"},{"1":"2019/05/07 3:03:34 PM GMT+8","2":"FPS006","3":"Male","4":"Indian","5":"24","6":"Traditional food","7":"Fresh Juice","8":"Yes"}],"options":{"columns":{"min":{},"max":[10],"total":[8]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShkYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>summary(data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBUaW1lc3RhbXAgICAgICAgICBQYXJ0aWNpcGFudF9JRCAgICAgICAgR2VuZGVyICAgICAgICAgIE5hdGlvbmFsaXR5ICAgICAgIFxuIExlbmd0aDoyODggICAgICAgICBMZW5ndGg6Mjg4ICAgICAgICAgTGVuZ3RoOjI4OCAgICAgICAgIExlbmd0aDoyODggICAgICAgIFxuIENsYXNzIDpjaGFyYWN0ZXIgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1vZGUgIDpjaGFyYWN0ZXIgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgQWdlICAgICAgICAgICAgRm9vZCAgICAgICAgICAgICAgSnVpY2UgICAgICAgICAgICAgRGVzc2VydCAgICAgICAgIFxuIE1pbi4gICA6IDguMDAgICBMZW5ndGg6Mjg4ICAgICAgICAgTGVuZ3RoOjI4OCAgICAgICAgIExlbmd0aDoyODggICAgICAgIFxuIDFzdCBRdS46MjQuMDAgICBDbGFzcyA6Y2hhcmFjdGVyICAgQ2xhc3MgOmNoYXJhY3RlciAgIENsYXNzIDpjaGFyYWN0ZXIgIFxuIE1lZGlhbiA6MjguMDAgICBNb2RlICA6Y2hhcmFjdGVyICAgTW9kZSAgOmNoYXJhY3RlciAgIE1vZGUgIDpjaGFyYWN0ZXIgIFxuIE1lYW4gICA6MzAuNjAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIDNyZCBRdS46MzYuMjUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIE1heC4gICA6ODAuMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIn0= -->
+<pre><code>  Timestamp         Participant_ID        Gender          Nationality       
+ Length:288         Length:288         Length:288         Length:288        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+      Age            Food              Juice             Dessert         
+ Min.   : 8.00   Length:288         Length:288         Length:288        
+ 1st Qu.:24.00   Class :character   Class :character   Class :character  
+ Median :28.00   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :30.60                                                           
+ 3rd Qu.:36.25                                                           
+ Max.   :80.00                                                           </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="cleaning-our-data" class="section level1">
+<h1>Cleaning our data</h1>
+<p>Looking at our data we seem only to have missing values in regards to gender.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFsZVwiICAgXCJGZW1hbGVcIiBOQSAgICAgIFxuIn0= -->
+<pre><code>[1] &quot;Male&quot;   &quot;Female&quot; NA      </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This could be due to not in fact wanting to disclose their gender so we can change the “NA” to “Not disclosed” without any issues.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTWFsZVwiICAgICAgICAgIFwiRmVtYWxlXCIgICAgICAgIFwiTm90IGRpc2Nsb3NlZFwiXG4ifQ== -->
+<pre><code>[1] &quot;Male&quot;          &quot;Female&quot;        &quot;Not disclosed&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Another detail to take into account seems to be Nationality. There are multiple instances of the same nationality just in different forms. As well as a mystery nationality called “<strong>MY</strong>” that doesn’t seem to be an abbreviation of any known nation (For the purposes of this project it will count as Malaysian).</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkluZGlhblwiICAgICAgXCJQYWtpc3RhbmlcIiAgIFwiVGFuemFuaWFuXCIgICBcIkluZG9uZXNpYVwiICAgXCJNdXNsaW1cIiAgICAgXG4gWzZdIFwiUGFraXN0YW5cIiAgICBcIk1hbGRpdmlhblwiICAgXCJNWVwiICAgICAgICAgIFwiTWFsYXlzaWFuXCIgICBcIkluZG9uZXNpYW5cIiBcblsxMV0gXCJNQUxBWVNJQU5cIiAgIFwiTWFsYXlzaWFcIiAgICBcIkNhbmFkaWFuXCIgICAgXCJOaWdlcmlhblwiICAgIFwiQWxnZXJpYW5cIiAgIFxuWzE2XSBcIktvcmVhblwiICAgICAgXCJTZXljaGVsbG9pc1wiIFwiSW5kb25lc2FpblwiICBcIkphcGFuXCIgICAgICAgXCJDaGluYVwiICAgICAgXG5bMjFdIFwiTWF1cml0aWFuXCIgICBcIlllbWVuXCIgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;Indian&quot;      &quot;Pakistani&quot;   &quot;Tanzanian&quot;   &quot;Indonesia&quot;   &quot;Muslim&quot;     
+ [6] &quot;Pakistan&quot;    &quot;Maldivian&quot;   &quot;MY&quot;          &quot;Malaysian&quot;   &quot;Indonesian&quot; 
+[11] &quot;MALAYSIAN&quot;   &quot;Malaysia&quot;    &quot;Canadian&quot;    &quot;Nigerian&quot;    &quot;Algerian&quot;   
+[16] &quot;Korean&quot;      &quot;Seychellois&quot; &quot;Indonesain&quot;  &quot;Japan&quot;       &quot;China&quot;      
+[21] &quot;Mauritian&quot;   &quot;Yemen&quot;      </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The easiest solution I found was to find all the repeating nationalities and replace them with a single one.</p>
+<!-- rnb-text-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkluZGlhblwiICAgICAgXCJQYWtpc3RhbmlcIiAgIFwiVGFuemFuaWFuXCIgICBcIkluZG9uZXNpYW5cIiAgXCJNdXNsaW1cIiAgICAgXG4gWzZdIFwiTWFsZGl2aWFuXCIgICBcIk1hbGF5c2lhblwiICAgXCJDYW5hZGlhblwiICAgIFwiTmlnZXJpYW5cIiAgICBcIkFsZ2VyaWFuXCIgICBcblsxMV0gXCJLb3JlYW5cIiAgICAgIFwiU2V5Y2hlbGxvaXNcIiBcIkluZG9uZXNhaW5cIiAgXCJKYXBhblwiICAgICAgIFwiQ2hpbmFcIiAgICAgIFxuWzE2XSBcIk1hdXJpdGlhblwiICAgXCJZZW1lblwiICAgICAgXG4ifQ== -->
+<pre><code> [1] &quot;Indian&quot;      &quot;Pakistani&quot;   &quot;Tanzanian&quot;   &quot;Indonesian&quot;  &quot;Muslim&quot;     
+ [6] &quot;Maldivian&quot;   &quot;Malaysian&quot;   &quot;Canadian&quot;    &quot;Nigerian&quot;    &quot;Algerian&quot;   
+[11] &quot;Korean&quot;      &quot;Seychellois&quot; &quot;Indonesain&quot;  &quot;Japan&quot;       &quot;China&quot;      
+[16] &quot;Mauritian&quot;   &quot;Yemen&quot;      </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="data-overview" class="section level1">
 <h1>Data overview</h1>
-<p>Let’s get a sense of what we are dealing with. Starting with the food:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-plot-begin -->
-<p><img src="data:image/png;base64,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" /></p>
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQzMi42MzI5LCJ3aWR0aCI6NzAwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,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" /></p>
 <!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Here we can see that there is a much larger preference for traditional food, also an interesting thing to note though is that males tend to prefer Western food while females lean more towards traditional food.</p>
+<p>Why is this? According to an article publish by the <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2531152/">National Center for Biotechnology Information</a>: “A growing body of evidence suggests that the food choices a mother makes during her pregnancy may set the stage for an infant’s later acceptance of solid foods.”</p>
+<p>It is my belief that due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into being born and preferring traditional food.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRm9vZCBQcmVmZXJlbmNlcyBmcm9tIGFyb3VuZCB0aGUgd29ybGQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkkgd291bGQgY29uc2lkZXIgbXlzZWxmIHNvbWV3aGF0IG9mIGEgZm9vZGllLCBub3RoaW5nIGdldHMgbWUgaW4gYSBnb29kIG1vb2QgbGlrZSBhIHdlbGwgbWFkZSBtZWFsLiBJJ20gcHJldHR5IHN1cmUgdGhhdCBJJ20gbm90IGFsb25lLiBOb3cgdGhpcyBnb3QgbWUgdGhpbmtpbmcsIGFib3V0IGhvdyBlYWNoIGNvdW50cnkgaGFzIHRoZWlyIG93biB0eXBlIG9mIGZvb2QuIFdvdWxkIHRoaXMgbWVhbiB0aGF0IHBlb3BsZSBpbiBkaWZmZXJlbnQgY291bnRyaWVzIHdvdWxkIGhhdmUgZGlmZmVyZW50IGxpa2VzIGFuZCBkaXNsaWtlcz8KCk9mIGNvdXJzZSB0aGlzIHdvdWxkIGJlIHRoZSBjYXNlLCBub3cgdGhlIG9ubHkgcXVlc3Rpb24gaXMgd2hhdCBraW5kIG9mIHByZWZlcmVuY2VzIGV4aXN0LgoKIyBJbXBvcnRpbmcgbGlicmFyaWVzCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKIyBHZXR0aW5nIG91ciBkYXRhCgpGb3IgdGhpcyBkYXRhIHZpeiBwcm9qZWN0IEkgd2lsbCBiZSB0YWtpbmcgYSBsb29rIGF0IGEgS2FnZ2xlIGRhdGEgc2V0IGNhbGwgW0Zvb2QgUHJlZmVyZW5jZXNdKGh0dHBzOi8vd3d3LmthZ2dsZS5jb20vdmlqYXlhc2hyZWVyL2Zvb2QtcHJlZmVyZW5jZXMpLiBUaGUgZGF0YSB3YXMgY29sbGVjdGVkIHZpYSBzdXJ2ZXkgdGhhdCB3YXMgY29uZHVjdGVkIGFtb25nIHBhcnRpY2lwYW50cyBmcm9tIGRpZmZlcmVudCBjb3VudHJpZXMgYW5kIGRlbW9ncmFwaGljcy4KCmBgYHtyfQpkYXRhIDwtIHJlYWRfY3N2KCdGb29kX1ByZWZlcmVuY2UuY3N2JykKaGVhZChkYXRhKQpgYGAKCmBgYHtyfQpzdW1tYXJ5KGRhdGEpCmBgYAoKIyBDbGVhbmluZyBvdXIgZGF0YQoKTG9va2luZyBhdCBvdXIgZGF0YSB3ZSBzZWVtIG9ubHkgdG8gaGF2ZSBtaXNzaW5nIHZhbHVlcyBpbiByZWdhcmRzIHRvIGdlbmRlci4KCmBgYHtyIGVjaG89RkFMU0V9CnVuaXF1ZShkYXRhJEdlbmRlcikKYGBgCgpUaGlzIGNvdWxkIGJlIGR1ZSB0byBub3QgaW4gZmFjdCB3YW50aW5nIHRvIGRpc2Nsb3NlIHRoZWlyIGdlbmRlciBzbyB3ZSBjYW4gY2hhbmdlIHRoZSAiTkEiIHRvICJOb3QgZGlzY2xvc2VkIiB3aXRob3V0IGFueSBpc3N1ZXMuCgpgYGB7ciBlY2hvPUZBTFNFfQpkYXRhJEdlbmRlcltpcy5uYShkYXRhJEdlbmRlcildIDwtICJOb3QgZGlzY2xvc2VkIgp1bmlxdWUoZGF0YSRHZW5kZXIpCmBgYAoKQW5vdGhlciBkZXRhaWwgdG8gdGFrZSBpbnRvIGFjY291bnQgc2VlbXMgdG8gYmUgTmF0aW9uYWxpdHkuIFRoZXJlIGFyZSBtdWx0aXBsZSBpbnN0YW5jZXMgb2YgdGhlIHNhbWUgbmF0aW9uYWxpdHkganVzdCBpbiBkaWZmZXJlbnQgZm9ybXMuIEFzIHdlbGwgYXMgYSBteXN0ZXJ5IG5hdGlvbmFsaXR5IGNhbGxlZCAiKipNWSoqIiB0aGF0IGRvZXNuJ3Qgc2VlbSB0byBiZSBhbiBhYmJyZXZpYXRpb24gb2YgYW55IGtub3duIG5hdGlvbiAoRm9yIHRoZSBwdXJwb3NlcyBvZiB0aGlzIHByb2plY3QgaXQgd2lsbCBjb3VudCBhcyBNYWxheXNpYW4pLgoKYGBge3IgZWNobz1GQUxTRX0KdW5pcXVlKGRhdGEkTmF0aW9uYWxpdHkpCmBgYAoKVGhlIGVhc2llc3Qgc29sdXRpb24gSSBmb3VuZCB3YXMgdG8gZmluZCBhbGwgdGhlIHJlcGVhdGluZyBuYXRpb25hbGl0aWVzIGFuZCByZXBsYWNlIHRoZW0gd2l0aCBhIHNpbmdsZSBvbmUuCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ0luZG9uZXNpYSddIDwtICdJbmRvbmVzaWFuJwpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ1Bha2lzdGFuJ10gPC0gJ1Bha2lzdGFuaScKZGF0YSROYXRpb25hbGl0eVtkYXRhJE5hdGlvbmFsaXR5ID09ICdNYWxheXNpYScgfCBkYXRhJE5hdGlvbmFsaXR5ID09ICdNQUxBWVNJQU4nXSA8LSAnTWFsYXlzaWFuJwpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ01ZJ10gPC0gJ01hbGF5c2lhbicKYGBgCgpgYGB7ciBlY2hvPUZBTFNFfQp1bmlxdWUoZGF0YSROYXRpb25hbGl0eSkKYGBgCgojIERhdGEgb3ZlcnZpZXcKCkxldCdzIGdldCBhIHNlbnNlIG9mIHdoYXQgd2UgYXJlIGRlYWxpbmcgd2l0aC4gU3RhcnRpbmcgd2l0aCB0aGUgZm9vZDoKCmBgYHtyIGVjaG89RkFMU0V9CmdncGxvdChkYXRhID0gZGF0YSkgKwogIGdlb21fYmFyKG1hcHBpbmcgPSBhZXMoRm9vZCksIGZpbGw9cmdiKDAuNSwwLjYsMC4xLDAuNyksIHdpZHRoPTAuMykgKwogIHRoZW1lKGF4aXMudGl0bGUueCA9IGVsZW1lbnRfYmxhbmsoKSwgYXhpcy50aXRsZS55ID0gZWxlbWVudF9ibGFuaygpKSArCiAgY29vcmRfZmxpcCgpCmBgYAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRm9vZCBQcmVmZXJlbmNlcyBmcm9tIGFyb3VuZCB0aGUgd29ybGQiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCkkgd291bGQgY29uc2lkZXIgbXlzZWxmIHNvbWV3aGF0IG9mIGEgZm9vZGllLCBub3RoaW5nIGdldHMgbWUgaW4gYSBnb29kIG1vb2QgbGlrZSBhIHdlbGwgbWFkZSBtZWFsLiBJJ20gcHJldHR5IHN1cmUgdGhhdCBJJ20gbm90IGFsb25lLiBOb3cgdGhpcyBnb3QgbWUgdGhpbmtpbmcsIGFib3V0IGhvdyBlYWNoIGNvdW50cnkgaGFzIHRoZWlyIG93biB0eXBlIG9mIGZvb2QuIFdvdWxkIHRoaXMgbWVhbiB0aGF0IHBlb3BsZSBpbiBkaWZmZXJlbnQgY291bnRyaWVzIHdvdWxkIGhhdmUgZGlmZmVyZW50IGxpa2VzIGFuZCBkaXNsaWtlcz8KCk9mIGNvdXJzZSB0aGlzIHdvdWxkIGJlIHRoZSBjYXNlLCBub3cgdGhlIG9ubHkgcXVlc3Rpb24gaXMgd2hhdCBraW5kIG9mIHByZWZlcmVuY2VzIGV4aXN0LgoKIyBJbXBvcnRpbmcgbGlicmFyaWVzCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKIyBHZXR0aW5nIG91ciBkYXRhCgpGb3IgdGhpcyBkYXRhIHZpeiBwcm9qZWN0IEkgd2lsbCBiZSB0YWtpbmcgYSBsb29rIGF0IGEgS2FnZ2xlIGRhdGEgc2V0IGNhbGwgW0Zvb2QgUHJlZmVyZW5jZXNdKGh0dHBzOi8vd3d3LmthZ2dsZS5jb20vdmlqYXlhc2hyZWVyL2Zvb2QtcHJlZmVyZW5jZXMpLiBUaGUgZGF0YSB3YXMgY29sbGVjdGVkIHZpYSBzdXJ2ZXkgdGhhdCB3YXMgY29uZHVjdGVkIGFtb25nIHBhcnRpY2lwYW50cyBmcm9tIGRpZmZlcmVudCBjb3VudHJpZXMgYW5kIGRlbW9ncmFwaGljcy4KCmBgYHtyfQpkYXRhIDwtIHJlYWRfY3N2KCdGb29kX1ByZWZlcmVuY2UuY3N2JykKaGVhZChkYXRhKQpgYGAKCmBgYHtyfQpzdW1tYXJ5KGRhdGEpCmBgYAoKIyBDbGVhbmluZyBvdXIgZGF0YQoKTG9va2luZyBhdCBvdXIgZGF0YSB3ZSBzZWVtIG9ubHkgdG8gaGF2ZSBtaXNzaW5nIHZhbHVlcyBpbiByZWdhcmRzIHRvIGdlbmRlci4KCmBgYHtyIGVjaG89RkFMU0V9CnVuaXF1ZShkYXRhJEdlbmRlcikKYGBgCgpUaGlzIGNvdWxkIGJlIGR1ZSB0byBub3QgaW4gZmFjdCB3YW50aW5nIHRvIGRpc2Nsb3NlIHRoZWlyIGdlbmRlciBzbyB3ZSBjYW4gY2hhbmdlIHRoZSAiTkEiIHRvICJOb3QgZGlzY2xvc2VkIiB3aXRob3V0IGFueSBpc3N1ZXMuCgpgYGB7ciBlY2hvPUZBTFNFfQpkYXRhJEdlbmRlcltpcy5uYShkYXRhJEdlbmRlcildIDwtICJOb3QgZGlzY2xvc2VkIgp1bmlxdWUoZGF0YSRHZW5kZXIpCmBgYAoKQW5vdGhlciBkZXRhaWwgdG8gdGFrZSBpbnRvIGFjY291bnQgc2VlbXMgdG8gYmUgTmF0aW9uYWxpdHkuIFRoZXJlIGFyZSBtdWx0aXBsZSBpbnN0YW5jZXMgb2YgdGhlIHNhbWUgbmF0aW9uYWxpdHkganVzdCBpbiBkaWZmZXJlbnQgZm9ybXMuIEFzIHdlbGwgYXMgYSBteXN0ZXJ5IG5hdGlvbmFsaXR5IGNhbGxlZCAiKipNWSoqIiB0aGF0IGRvZXNuJ3Qgc2VlbSB0byBiZSBhbiBhYmJyZXZpYXRpb24gb2YgYW55IGtub3duIG5hdGlvbiAoRm9yIHRoZSBwdXJwb3NlcyBvZiB0aGlzIHByb2plY3QgaXQgd2lsbCBjb3VudCBhcyBNYWxheXNpYW4pLgoKYGBge3IgZWNobz1GQUxTRX0KdW5pcXVlKGRhdGEkTmF0aW9uYWxpdHkpCmBgYAoKVGhlIGVhc2llc3Qgc29sdXRpb24gSSBmb3VuZCB3YXMgdG8gZmluZCBhbGwgdGhlIHJlcGVhdGluZyBuYXRpb25hbGl0aWVzIGFuZCByZXBsYWNlIHRoZW0gd2l0aCBhIHNpbmdsZSBvbmUuCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ0luZG9uZXNpYSddIDwtICdJbmRvbmVzaWFuJwpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ1Bha2lzdGFuJ10gPC0gJ1Bha2lzdGFuaScKZGF0YSROYXRpb25hbGl0eVtkYXRhJE5hdGlvbmFsaXR5ID09ICdNYWxheXNpYScgfCBkYXRhJE5hdGlvbmFsaXR5ID09ICdNQUxBWVNJQU4nXSA8LSAnTWFsYXlzaWFuJwpkYXRhJE5hdGlvbmFsaXR5W2RhdGEkTmF0aW9uYWxpdHkgPT0gJ01ZJ10gPC0gJ01hbGF5c2lhbicKYGBgCgpgYGB7ciBlY2hvPUZBTFNFfQp1bmlxdWUoZGF0YSROYXRpb25hbGl0eSkKYGBgCgojIERhdGEgb3ZlcnZpZXcKCmBgYHtyIGVjaG89RkFMU0V9CmdncGxvdChkYXRhID0gZGF0YSkgKwogIGdlb21fYmFyKG1hcHBpbmcgPSBhZXMoRm9vZCwgZmlsbCA9IEdlbmRlciksIHdpZHRoPTAuMykgKwogIHRoZW1lKGF4aXMudGl0bGUueCA9IGVsZW1lbnRfYmxhbmsoKSwgYXhpcy50aXRsZS55ID0gZWxlbWVudF9ibGFuaygpKSArCiAgc2NhbGVfZmlsbF9icmV3ZXIocGFsZXR0ZSA9ICJTZXQxIikgKwogIGNvb3JkX2ZsaXAoKQpgYGAKCkhlcmUgd2UgY2FuIHNlZSB0aGF0IHRoZXJlIGlzIGEgbXVjaCBsYXJnZXIgcHJlZmVyZW5jZSBmb3IgdHJhZGl0aW9uYWwgZm9vZCwgYWxzbyBhbiBpbnRlcmVzdGluZyB0aGluZyB0byBub3RlIHRob3VnaCBpcyB0aGF0IG1hbGVzIHRlbmQgdG8gcHJlZmVyIFdlc3Rlcm4gZm9vZCB3aGlsZSBmZW1hbGVzIGxlYW4gbW9yZSB0b3dhcmRzIHRyYWRpdGlvbmFsIGZvb2QuCgpXaHkgaXMgdGhpcz8gQWNjb3JkaW5nIHRvIGFuIGFydGljbGUgcHVibGlzaCBieSB0aGUgW05hdGlvbmFsIENlbnRlciBmb3IgQmlvdGVjaG5vbG9neSBJbmZvcm1hdGlvbl0oaHR0cHM6Ly93d3cubmNiaS5ubG0ubmloLmdvdi9wbWMvYXJ0aWNsZXMvUE1DMjUzMTE1Mi8pOiAiQSBncm93aW5nIGJvZHkgb2YgZXZpZGVuY2Ugc3VnZ2VzdHMgdGhhdCB0aGUgZm9vZCBjaG9pY2VzIGEgbW90aGVyIG1ha2VzIGR1cmluZyBoZXIgcHJlZ25hbmN5IG1heSBzZXQgdGhlIHN0YWdlIGZvciBhbiBpbmZhbnQncyBsYXRlciBhY2NlcHRhbmNlIG9mIHNvbGlkIGZvb2RzLiIKCkl0IGlzIG15IGJlbGllZiB0aGF0IGR1ZSB0byB3b21lbiBwcmVmZXJyaW5nIG1vcmUgdHJhZGl0aW9uYWwgZm9vZCwgYSB2ZXJ5IGxpa2VseSBzY2VuYXJpbyBpcyB0aGF0IGR1cmluZyBwcmVnbmFuY3kgdGhleSB3b3VsZCBiZSBtb3JlIGxpa2VseSB0byBjb25zdW1lIHRyYWRpdGlvbmFsIGZvb2Qgd2hpY2ggd291bGQgYmUgYSBjb250cmlidXRpbmcgZmFjdG9yIHRoYXQgbGVhZHMgaW50byBiZWluZyBib3JuIGFuZCBwcmVmZXJyaW5nIHRyYWRpdGlvbmFsIGZvb2QuCgpgYGB7cn0KCmBgYAoK</div>
 
 
 

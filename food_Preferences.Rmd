@@ -62,11 +62,21 @@ unique(data$Nationality)
 
 # Data overview
 
-Let's get a sense of what we are dealing with. Starting with the food:
-
 ```{r echo=FALSE}
 ggplot(data = data) +
-  geom_bar(mapping = aes(Food), fill=rgb(0.5,0.6,0.1,0.7), width=0.3) +
+  geom_bar(mapping = aes(Food, fill = Gender), width=0.3) +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
+  scale_fill_brewer(palette = "Set1") +
   coord_flip()
 ```
+
+Here we can see that there is a much larger preference for traditional food, also an interesting thing to note though is that males tend to prefer Western food while females lean more towards traditional food.
+
+Why is this? According to an article publish by the [National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2531152/): "A growing body of evidence suggests that the food choices a mother makes during her pregnancy may set the stage for an infant's later acceptance of solid foods."
+
+It is my belief that due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into being born and preferring traditional food.
+
+```{r}
+
+```
+
