@@ -60,23 +60,32 @@ data$Nationality[data$Nationality == 'MY'] <- 'Malaysian'
 unique(data$Nationality)
 ```
 
-# Data overview
+# Data Overview
 
 ```{r echo=FALSE}
 ggplot(data = data) +
-  geom_bar(mapping = aes(Food, fill = Gender), width=0.3) +
-  theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
-  scale_fill_brewer(palette = "Set1") +
+  geom_bar(mapping = aes(Food, fill = Gender), width=0.4, alpha = 0.8) +
+  theme(axis.text.y = element_text(angle = 50, vjust = 1, hjust = 1),
+        axis.title.x = element_blank(), axis.title.y = element_blank()) +
+  scale_fill_brewer(palette = "YlOrRd") +
   coord_flip()
 ```
 
 Here we can see that there is a much larger preference for traditional food, also an interesting thing to note though is that males tend to prefer Western food while females lean more towards traditional food.
 
-Why is this? According to an article publish by the [National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2531152/): "A growing body of evidence suggests that the food choices a mother makes during her pregnancy may set the stage for an infant's later acceptance of solid foods."
-
-It is my belief that due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into the offspring preferring traditional food.
-
-```{r}
-
+```{r echo=FALSE}
+ggplot(data, aes(Food, Age)) +
+  geom_boxplot(color="red", fill="red", alpha=0.4, 
+               notch=TRUE, notchwidth = 0.8,
+               outlier.colour="orange", outlier.fill="orange", outlier.size=3,
+               width = 0.1) +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
 ```
 
+# Conclusion
+
+We know that there is a larger preference for traditional food.
+
+Why is this? According to an article publish by the [National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2531152/): "A growing body of evidence suggests that the food choices a mother makes during her pregnancy may set the stage for an infant's later acceptance of solid foods."
+
+It's my belief that due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into the offspring preferring traditional food, and the cycle would continue.
