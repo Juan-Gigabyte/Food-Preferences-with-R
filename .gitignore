@@ -34,3 +34,5 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+rsconnect/documents/food_Preferences.Rmd/rpubs.com/rpubs/
