@@ -3,9 +3,11 @@ title: "Food Preferences from around the world"
 output: html_notebook
 ---
 
-I would consider myself somewhat of a foodie, nothing gets me in a good mood like a well made meal. I'm pretty sure that I'm not alone. Now this got me thinking, about how each country has their own type of food. Would this mean that people in different countries would have different likes and dislikes?
+I would consider myself somewhat of a foodie, nothing gets me in a good mood like a good meal, me personally I'm a fan of more traditional food. Now this got me thinking, about how each country has their own type of food. I wonder do they share the same preferences as me?
 
-Of course this would be the case, now the only question is what kind of preferences exist.
+Using a Kaggle data-set let's find the answer.
+
+For clarity sake in this project food that falls under the western food category will be fast food (i.e. McDonald's, KFC, Burger King, etc.).
 
 # Importing libraries
 
@@ -13,6 +15,7 @@ Of course this would be the case, now the only question is what kind of preferen
 library(tidyverse)
 library(corrgram)
 library(fastDummies)
+library(ggthemes)
 library(GGally)
 ```
 
@@ -67,10 +70,11 @@ unique(data$Nationality)
 
 ```{r echo=FALSE}
 ggplot(data = data) +
-  geom_bar(mapping = aes(Food, fill = Gender), width=0.4, alpha = 0.8) +
+  geom_bar(mapping = aes(Food, fill = Gender), width=0.4) +
   theme(axis.text.y = element_text(angle = 50, vjust = 1, hjust = 1),
         axis.title.x = element_blank(), axis.title.y = element_blank()) +
-  scale_fill_brewer(palette = "RdYlGn") +
+  theme_economist() +
+  scale_fill_economist() +
   coord_flip()
 ```
 
@@ -78,18 +82,21 @@ Here we can see that there is a much larger preference for traditional food, als
 
 Why is this? According to an article publish by the [National Center for Biotechnology Information](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2531152/): "A growing body of evidence suggests that the food choices a mother makes during her pregnancy may set the stage for an infant's later acceptance of solid foods."
 
-It's my belief that due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into the offspring preferring traditional food, and the cycle would continue.
+Due to women preferring more traditional food, a very likely scenario is that during pregnancy they would be more likely to consume traditional food which would be a contributing factor that leads into the offspring preferring traditional food.
 
 ```{r echo=FALSE}
 ggplot(data, aes(Food, Age)) +
-  geom_boxplot(color="red", fill="red", alpha=0.4, 
+  geom_boxplot(color="#003333", fill="#003333", alpha=0.4, 
                notch=TRUE, notchwidth = 0.8,
-               outlier.colour="orange", outlier.fill="orange", outlier.size=3,
+               outlier.colour="#99CCCC", outlier.size=3,
                width = 0.1) +
-  theme(axis.title.x = element_blank(), axis.title.y = element_blank())
+  theme_economist() +
+  scale_fill_economist()
 ```
 
 The older one seems to get, the more they prefer traditional food. In general though overall traditional food is enjoyed by all ages, whereas Western Food is enjoyed mostly by young adults.
+
+This makes sense according to a study done by [Centers for Disease Control](https://www.cdc.gov/nchs/products/databriefs/db322.htm) which concluded that "the percentage of adults who consumed fast food decreased with age" with the highest consumption being done by people ages 20-39. 
 
 ```{r include=FALSE}
 corrData = dummy_cols(data[, -c(1,2,3,4)],remove_first_dummy = F)
@@ -108,6 +115,12 @@ ggcorr(
   palette = "PuOr")
 ```
 
+As you can see a lot of what we find correlated makes sense, for starters as we determined before we see a correlation between the age of someone and their preference for traditional food.
+
+We can also infer that people who eat western food tend to have less than ideal diets, opting to drink carbonated drinks as well as eating dessert afterwards. While the inverse can be said for people who enjoy traditional food.
+
 # Conclusion
 
-We know that there is a larger preference for traditional food.
+We started off inferring based on my personal experience that people would prefer to eat more traditional food. After conducting my analysis I can say for certain that people from all age groups mostly women do in fact prefer traditional food.
+
+People who eat western food also seem to lead a more unhealthy life style as they opt to drink carbonated drinks and eat dessert afterwards. However as people age the preference for western food decreases.
