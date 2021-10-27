@@ -4,6 +4,8 @@
 
 A data visualization project using a [Kaggle Dataset](https://www.kaggle.com/vijayashreer/food-preferences) that has the food preferences of people from around the world. I will be using R as my language of choice for this project.
 
+You can also see the project on [RPubs](http://rpubs.com/JuanGigabyte/foodPreferences).
+
 ## Goals for the project
 
 - - - -
